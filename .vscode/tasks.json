@@ -1,0 +1,56 @@
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run C",
+      "type": "shell",
+      "command": "gcc -Wall -Wextra \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && \"${fileDirname}/${fileBasenameNoExtension}\"",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": true
+      }
+    },
+    {
+      "label": "Run C++",
+      "type": "shell",
+      "command": "g++ -std=c++17 -Wall -Wextra \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && \"${fileDirname}/${fileBasenameNoExtension}\"",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": true
+      }
+    },
+    {
+      "label": "Run Verilog",
+      "type": "shell",
+      "command": "iverilog -g2012 -s \"${input:topModule}\" -o \"${fileDirname}/simulation.vvp\" \"${fileDirname}\"/*.v && vvp \"${fileDirname}/simulation.vvp\"",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "topModule",
+      "type": "promptString",
+      "description": "Enter your Verilog testbench module name",
+      "default": "testbench"
+    }
+  ]
+}
